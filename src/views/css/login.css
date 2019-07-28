@@ -1,8 +1,8 @@
 @import "bourbon";
 
-body {
+/* body {
 	background: #eee !important;	
-}
+} */
 
 .wrapper {	
 	margin-top: 80px;
@@ -17,4 +17,33 @@ body {
   border: 1px solid rgba(0,0,0,0.1);  
 
 }
+#pswdNotification {
+  display: none;
+}
+#topicTitle {
+  display: none;
+}
+#questionSpace {
+  display: none;
+}
+#topics {
+  display: none;
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);  
 
+}
+
+.card-body {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+div.question-option {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,0.1);  
+}
