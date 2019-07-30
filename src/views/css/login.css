@@ -20,6 +20,9 @@
 #pswdNotification {
   display: none;
 }
+.form-group{
+  display: none;
+}
 #topicTitle {
   display: none;
 }
