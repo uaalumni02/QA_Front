@@ -113,10 +113,10 @@
     }
     let userData = "";
     const showQuestionData = (req, res) => {
-        const topic = document.querySelector('input[name="topicRadio"]:checked').value;
+        const topicData = document.querySelector('input[name="topicRadio"]:checked').value;
         const token = localStorage.getItem('token');
         const bearer = 'Bearer ' + token
-        fetch('http://localhost:3000/api/question/' + topic, {
+        fetch('http://localhost:3000/api/question/' + topicData, {
             method: "GET",
             headers: {
                 'Authorization': bearer,
@@ -165,8 +165,8 @@
         theForm.addEventListener("submit", (event) => {
             event.preventDefault();
             let question = document.getElementById("questionSpace").value;
-            let topic = document.getElementById("radioTopic").value;
-    
+            const topic = document.querySelector('input[name="topicRadio"]:checked').value;
+
             const token = localStorage.getItem('token');
             const bearer = 'Bearer ' + token
 
