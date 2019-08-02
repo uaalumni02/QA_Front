@@ -8,15 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <link href="css/login.css" rel='stylesheet' type='text/css' />
+    <link href="public/css/login.css" rel='stylesheet' type='text/css' />
 </head>
 
 <body>
     <div id="title">
         <h1 style="text-align: center">MERN Q & A</h1>
-    </div>
-    <div id="topicTitle">
-        <h1 style="text-align: center">Select a Topic</h1>
     </div>
     <div id="loginWrapper" class="wrapper">
         <form id="LoginForm" class="form-signin">
@@ -34,19 +31,20 @@
     <div id="pswdNotification">
         <p style="text-align: center">Incorrect Password</p>
     </div>
-    <div onclick="showQuestionData()" id="topics"></div>
+    <!-- <div onclick="showQuestionData()" id="topics"></div>
     <form id="questionForm"  action="#" method="post">
         <div id="form-group" class="form-group shadow-textarea">
             <label for="exampleFormControlTextarea6">Share a Question</label>
             <textarea class="form-control z-depth-1" name="questionSpace" id="questionSpace" rows="3"
                 placeholder="Write question here..."></textarea>
+                <br></br>
+                <input type="submit" value="Submit">
         </div>
-        <input type="submit" value="Submit">
     </form>
     <div id="userName"></div>
     <div id="questionInfo" class="container">
         <div id="question"></div>
-    </div>
+    </div> -->
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -71,14 +69,7 @@
                     const password = response.token
                     const localStoragePswd = localStorage.getItem('token', response.token);
                     if (password === localStoragePswd) {
-                        document.getElementById("loginWrapper").style.display = "none";
-                        document.getElementById("pswdNotification").style.display = "none";
-                        document.getElementById("topics").style.display = "block";
-                        document.getElementById("title").style.display = "none";
-                        document.getElementById("topicTitle").style.display = "block";
-                        document.getElementById("questionSpace").style.display = "block";
-                        document.getElementById("form-group").style.display = "block";
-                        showTopic()
+                        window.location.replace('http://localhost:8080/home/');
                     } else {
                         document.getElementById("pswdNotification").style.display = "block";
                     }
@@ -86,109 +77,111 @@
             $('#LoginForm').get(0).reset();
         })
     });
-    let topic = "";
-    const showTopic = (req, res) => {
-        const token = localStorage.getItem('token');
-        const bearer = 'Bearer ' + token
-        fetch('http://localhost:3000/api/topic/', {
-            method: "GET",
-            headers: {
-                'Authorization': bearer,
-            }
-        })
-            .then(res => res.json())
-            .then(response => {
-                var radioHtml = '';
-                for (var i = 0; i < response.length; i++) {
-                    topic = response[i].topic
-                    // console.log(response[i]._id)
-                    radioHtml += '<div class="timeRadio">'
-                    radioHtml += `<label><input type="radio" id="radioTopic"  value="${response[i]._id}" name="topicRadio"> ${topic}</label>`;
-                    radioHtml += '</div>';
-                }
-                const timeContainer = document.getElementById("topics");
-                timeContainer.innerHTML = radioHtml;
-            })
-            .catch(error => console.error('Error:', error));
-    }
-    let userData = "";
-    const showQuestionData = (req, res) => {
-        const topicData = document.querySelector('input[name="topicRadio"]:checked').value;
-        const token = localStorage.getItem('token');
-        const bearer = 'Bearer ' + token
-        fetch('http://localhost:3000/api/question/' + topicData, {
-            method: "GET",
-            headers: {
-                'Authorization': bearer,
-            }
-        })
-            .then(res => res.json())
-            .then(response => {
-                let html = '';
-                for (var i = 0; i < response.length; i++) {
-                    userData = response[i].user
-                    html += ` <div class="card question-option"  style="width: 50rem;">`
-                    html += `<div id='card'  class="card-body">`
-                    html += `<h5>  Question: ${response[i].question} </h5>`;
-                    html += `</div>`;
-                    html += `</div>`;
-                }
-                showUserData()
-                const questionContainer = document.getElementById("question");
-                questionContainer.innerHTML = html;
-            })
-            .catch(error => console.error('Error:', error));
-    }
+    // let topic = "";
+    // const showTopic = (req, res) => {
+    //     const token = localStorage.getItem('token');
+    //     const bearer = 'Bearer ' + token
+    //     fetch('http://localhost:3000/api/topic/', {
+    //         method: "GET",
+    //         headers: {
+    //             'Authorization': bearer,
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(response => {
+    //             var radioHtml = '';
+    //             for (var i = 0; i < response.length; i++) {
+    //                 topic = response[i].topic
+    //                 // console.log(response[i]._id)
+    //                 radioHtml += '<div class="timeRadio">'
+    //                 radioHtml += `<label><input type="radio" id="radioTopic"  value="${response[i]._id}" name="topicRadio"> ${topic}</label>`;
+    //                 radioHtml += '</div>';
+    //             }
+    //             const timeContainer = document.getElementById("topics");
+    //             timeContainer.innerHTML = radioHtml;
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    // }
+    // let userData = "";
+    // const showQuestionData = (req, res) => {
+    //     const topicData = document.querySelector('input[name="topicRadio"]:checked').value;
+    //     const token = localStorage.getItem('token');
+    //     const bearer = 'Bearer ' + token
+    //     fetch('http://localhost:3000/api/question/' + topicData, {
+    //         method: "GET",
+    //         headers: {
+    //             'Authorization': bearer,
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(response => {
+    //             console.log(response)
+    //             let html = '';
+    //             for (var i = 0; i < response.length; i++) {
+    //                 userData = response[i].user
+    //                 html += ` <div class="card question-option"  style="width: 50rem;">`
+    //                 html += `<div id='card'  class="card-body">`
+    //                 html += `<h5>  Question: ${response[i].question} </h5>`;
+    //                 html += `</div>`;
+    //                 html += `</div>`;
+    //             }
+    //             showUserData()
+    //             const questionContainer = document.getElementById("question");
+    //             questionContainer.innerHTML = html;
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    // }
 
-    const showUserData = (req, res) => {
-        const token = localStorage.getItem('token');
-        const bearer = 'Bearer ' + token
-        fetch('http://localhost:3000/api/user/' + userData, {
-            method: "GET",
-            headers: {
-                'Authorization': bearer,
-            }
-        })
-            .then(res => res.json())
-            .then(response => {
-                let html = '';
+    // const showUserData = (req, res) => {
+    //     const token = localStorage.getItem('token');
+    //     const bearer = 'Bearer ' + token
+    //     fetch('http://localhost:3000/api/user/' + userData, {
+    //         method: "GET",
+    //         headers: {
+    //             'Authorization': bearer,
+    //         }
+    //     })
+    //         .then(res => res.json())
+    //         .then(response => {
+    //             // console.log(response)
+    //             let html = '';
 
-                html += `<h5>  Question Posted By: ${response.username} </h5>`;
+    //             html += `<h5>  Question Posted By: ${response.username} </h5>`;
 
-                const userContainer = document.getElementById("userName");
-                userContainer.innerHTML = html;
-            })
-            .catch(error => console.error('Error:', error));
-    }
+    //             const userContainer = document.getElementById("userName");
+    //             userContainer.innerHTML = html;
+    //         })
+    //         .catch(error => console.error('Error:', error));
+    // }
 
-        const theForm = document.getElementById("questionForm");
-        theForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            let question = document.getElementById("questionSpace").value;
-            const topic = document.querySelector('input[name="topicRadio"]:checked').value;
+    //     const theForm = document.getElementById("questionForm");
+    //     theForm.addEventListener("submit", (event) => {
+    //         event.preventDefault();
+    //         let question = document.getElementById("questionSpace").value;
+    //         const topic = document.querySelector('input[name="topicRadio"]:checked').value;
 
-            const token = localStorage.getItem('token');
-            const bearer = 'Bearer ' + token
+    //         const token = localStorage.getItem('token');
+    //         const bearer = 'Bearer ' + token
 
-            fetch('http://localhost:3000/api/question/', {
-                method: "post",
-                headers: {
-                    'Authorization': bearer,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    question: question,
-                    topic: topic,
-                    user: userData
+    //         fetch('http://localhost:3000/api/question/', {
+    //             method: "post",
+    //             headers: {
+    //                 'Authorization': bearer,
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 question: question,
+    //                 topic: topic,
+    //                 user: userData
 
-                })
-            })
-                .then(res => res.json())
-                .then(response => {
-                    console.log(response)
-                }).catch(error => console.error('Error:', error));
-            $('#questionForm').get(0).reset();
-        })
+    //             })
+    //         })
+    //             .then(res => res.json())
+    //             .then(response => {
+    //                 console.log(response)
+    //             }).catch(error => console.error('Error:', error));
+    //         $('#questionForm').get(0).reset();
+    //     })
    
 
 </script>

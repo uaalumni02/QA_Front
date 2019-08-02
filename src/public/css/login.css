@@ -20,7 +20,7 @@
 #pswdNotification {
   display: none;
 }
-.form-group{
+/* .form-group{
   display: none;
 }
 #topicTitle {
@@ -37,9 +37,9 @@
   background-color: #fff;
   border: 1px solid rgba(0,0,0,0.1);  
 
-}
+} */
 
-.card-body {
+/* .card-body {
   margin-bottom: 10px;
   margin-top: 10px;
 }
@@ -49,4 +49,6 @@ div.question-option {
   margin: 0 auto;
   background-color: #fff;
   border: 1px solid rgba(0,0,0,0.1);  
-}
+} */
+
+
