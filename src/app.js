@@ -27,6 +27,10 @@ app.get('/home', (req, res) => {
     return res.render('home')
 });
 
+app.get('/mongodb', (req, res) => {
+    return res.render('mongodb')
+});
+
 
 
 app.listen(port, () => console.log('frontend is live'));
