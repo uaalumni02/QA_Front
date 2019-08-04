@@ -31,25 +31,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a style="color: black" class="nav-link" href="#">TBD</a>
+                        <a style="color: black" class="nav-link" href="http://localhost:8080/home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a style="color: black" class="nav-link" href="#">TBD</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a style="color: black" class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                            data-toggle="dropdown">
-                            TBD
-                        </a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">TBD</a>
-                            <a class="dropdown-item" href="#">TBD</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">TBD</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a style="color: black" class="nav-link" href="#">TBD</a>
+                        <a style="color: black" class="nav-link" onclick="logOut()" href="/">Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -81,7 +66,7 @@
         </footer>
         <!-- The Modal -->
         <form id="questionForm">
-            < <div class="modal fade" id="myModal">
+             <div class="modal fade" id="myModal">
                 <div class="modal-dialog modal-xl">
                     <div class="modal-content">
                         <!-- Modal Header -->
@@ -114,6 +99,7 @@
     </div>
     </form>
 </body>
+<script src="/public/logOut.js"></script>
 <script>
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token
@@ -126,6 +112,7 @@
     })
         .then(res => res.json())
         .then(response => {
+            console.log(response)
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 userData = response[i].user._id
@@ -136,7 +123,7 @@
         })
         .catch(error => console.error('Error:', error));
 
-        //gettting topics for db
+        //gettting topics from db
     fetch('http://localhost:3000/api/topic/', {
         method: "GET",
         headers: {
@@ -149,9 +136,9 @@
                 //pass id and load question based on id next page when clicked can also pull topic name from object 
                 html += `<li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/mongodb">${response[0].topic}</a>
-                        <a class="nav-link" href="#">${response[1].topic}</a>
-                        <a class="nav-link" href="#">${response[2].topic}</a>
-                        <a class="nav-link" href="#">${response[3].topic}</a>
+                        <a class="nav-link" href="http://localhost:8080/express">${response[1].topic}</a>
+                        <a class="nav-link" href="http://localhost:8080/react">${response[2].topic}</a>
+                        <a class="nav-link" href="http://localhost:8080/node">${response[3].topic}</a>
                     </li>`
             const topicContainer = document.getElementById("topic");
             topicContainer.innerHTML = html;

@@ -5,5 +5,8 @@
 .btn {
     position: absolute;
 }
-  
+footer {
+    display: flex;
+    justify-content: center;
+    }
   

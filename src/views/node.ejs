@@ -23,7 +23,7 @@
 <body>
     <div class="container-fluid">
         <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark>
-            <a class=" navbar-brand" href="#">Q & A</a>
+                    <a class=" navbar-brand" href="#">Q & A</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,12 +39,12 @@
             </div>
         </nav>
         <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
-            <h1 style="text-align: center" class="display-4">MongoDB</h1>
+            <h1 style="text-align: center" class="display-4">Node</h1>
             <p style="text-align: center" class="lead">Leave an answer if you have a solution. </p>
         </div>
         <div class="row mt-sm-4 mt-md-0">
             <div class="col-sm-12 col-md-8 text-sm-center text-md-left">
-                <h3>MongoDB Questions</h3>
+                <h3>Node Questions</h3>
                 <div id="question"></div>
             </div>
             <div class="col-sm-12 col-md-4">
@@ -53,18 +53,17 @@
                 </ul>
             </div>
         </div>
-                <br></br>
-                <footer class="page-footer font-small blue">
-                    <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
-                    </div>
-                </footer>
-              
+        <br></br>
+        <footer class="page-footer font-small blue">
+            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
+            </div>
+        </footer>
 </body>
 <script src="/public/logOut.js"></script>
 <script>
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token
-    fetch('http://localhost:3000/api/question/' + '5d1e65a7ca9684090e6375c5', {
+    fetch('http://localhost:3000/api/question/' + '5d1e65f8ca9684090e6375c8', {
         method: "GET",
         headers: {
             'Authorization': bearer,
@@ -94,11 +93,11 @@
             let html = '';
             //pass id and load question based on id next page when clicked can also pull topic name from object 
             html += `<li class="nav-item">
-                        <a class="nav-link active" href="#">${response[0].topic}</a>
-                        <a class="nav-link" href="http://localhost:8080/express">${response[1].topic}</a>
-                        <a class="nav-link" href="http://localhost:8080/react">${response[2].topic}</a>
-                        <a class="nav-link" href="http://localhost:8080/node">${response[3].topic}</a>
-                    </li>`
+                                <a class="nav-link" href="http://localhost:8080/mongodb">${response[0].topic}</a>
+                                <a class="nav-link" href="http://localhost:8080/express">${response[1].topic}</a>
+                                <a class="nav-link" href="http://localhost:8080/react">${response[2].topic}</a>
+                                <a class="nav-link active" href="#">${response[3].topic}</a>
+                            </li>`
             const topicContainer = document.getElementById("topic");
             topicContainer.innerHTML = html;
         })

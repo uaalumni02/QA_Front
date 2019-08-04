@@ -17,7 +17,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(__dirname + '/views'))
 
 app.use('/public', express.static(__dirname + '/public'))
-// app.use(express.static(path.join(__dirname + '/public')));
 
 app.get('/', (req, res) => {
     return res.render('login')
@@ -30,6 +29,17 @@ app.get('/home', (req, res) => {
 app.get('/mongodb', (req, res) => {
     return res.render('mongodb')
 });
+app.get('/express', (req, res) => {
+    return res.render('express')
+});
+
+app.get('/react', (req, res) => {
+    return res.render('react')
+});
+app.get('/node', (req, res) => {
+    return res.render('node')
+});
+
 
 
 
