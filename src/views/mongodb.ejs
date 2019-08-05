@@ -24,7 +24,7 @@
     <div class="container-fluid">
         <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark>
             <a class=" navbar-brand" href="#">Q & A</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <button class="navbar-toggler" style="background-color:white"  type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -75,7 +75,7 @@
             console.log(response)
             let html = '';
             for (var i = 0; i < response.length; i++) {
-                html += `<h6>${response[i].question}? Posted By: ${response[i].user.username} </h6>`;
+                html += `<h6>${response[i].question}? Posted By: ${response[i].user.username}  <button class="link">Answer</button> </h6>`;
             }
             const questionContainer = document.getElementById("question");
             questionContainer.innerHTML = html;
