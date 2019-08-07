@@ -25,7 +25,8 @@
     <div class="container-fluid">
         <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark>
             <a class=" navbar-brand" href="#">Q & A</a>
-            <button style="background-color:white" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <button style="background-color:white" class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -43,60 +44,64 @@
             <h1 style="text-align: center" class="display-4">Conquering One Blocker At A Time</h1>
             <p style="text-align: center" class="lead">Post a question or leave an answer if you have a solution. </p>
         </div>
-        <div class="row mt-sm-4 mt-md-0">
-            <div class="col-sm-12 col-md-8 text-sm-center text-md-left">
-                <h3>Recently Posted Questions</h3>
-                <div id="question"></div>
-            </div>
-            <div class="col-sm-12 col-md-4">
-                <h3 class="mb-4">Browse a Topic</h3>
-                <ul id="topic" class="nav flex-column nav-pills">
-                </ul>
+        <div id="gridWrapper">
+            <div class="row mt-sm-4 mt-md-0">
+                <div class="col-sm-12 col-md-4">
+                    <h3 class="mb-4">Browse a Topic</h3>
+                    <ul id="topic" class="nav flex-column nav-pills">
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-8 text-sm-center text-md-left">
+                    <h3>Recently Posted Questions</h3>
+                    <div id="question"></div>
+                </div>
             </div>
         </div>
-        <br></br>
-        <div class="wrapper">
-            <button style="position: absolute" type="button" class="btn btn-outline-secondary" data-toggle="modal"
-                data-target="#myModal">Ask a Question</button>
+    </div>
+    <br></br>
+    <div style="text-align: center" class="wrapper">
+        <button  type="button" class="btn btn-outline-secondary" data-toggle="modal"
+            data-target="#myModal">Ask a Question</button>
+    </div>
+    <br></br>
+    <br></br>
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
         </div>
-        <br></br>
-        <footer class="page-footer font-small blue">
-            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
-            </div>
-        </footer>
-        <!-- The Modal -->
-        <form id="questionForm">
-             <div class="modal fade" id="myModal">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Select Topic
-                                </button>
-                                <div id="modalTopic" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleTextarea">Enter Question</label>
-                                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+    </footer>
+    <!-- The Modal -->
+    <form id="questionForm">
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select Topic
+                            </button>
+                            <div id="modalTopic" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             </div>
                         </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" onclick="submitQuestion()" class="btn btn-secondary"
-                                data-dismiss="modal">Save</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleTextarea">Enter Question</label>
+                            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
                         </div>
                     </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" onclick="submitQuestion()" class="btn btn-secondary"
+                            data-dismiss="modal">Save</button>
+                    </div>
                 </div>
-    </div>
-    </div>
+            </div>
+        </div>
+        </div>
     </form>
 </body>
 <script src="/public/logOut.js"></script>
@@ -112,7 +117,6 @@
     })
         .then(res => res.json())
         .then(response => {
-            console.log(response)
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 userData = response[i].user._id
@@ -123,7 +127,7 @@
         })
         .catch(error => console.error('Error:', error));
 
-        //gettting topics from db
+    //gettting topics from db
     fetch('http://localhost:3000/api/topic/', {
         method: "GET",
         headers: {
@@ -133,8 +137,8 @@
         .then(res => res.json())
         .then(response => {
             let html = '';
-                //pass id and load question based on id next page when clicked can also pull topic name from object 
-                html += `<li class="nav-item">
+            //pass id and load question based on id next page when clicked can also pull topic name from object 
+            html += `<li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/mongodb">${response[0].topic}</a>
                         <a class="nav-link" href="http://localhost:8080/express">${response[1].topic}</a>
                         <a class="nav-link" href="http://localhost:8080/react">${response[2].topic}</a>

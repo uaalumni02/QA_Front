@@ -40,6 +40,9 @@ app.get('/node', (req, res) => {
     return res.render('node')
 });
 
+app.get('/question/:id', (req, res) => {
+    return res.render('question')
+});
 
 
 

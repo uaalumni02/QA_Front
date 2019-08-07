@@ -6,7 +6,6 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -18,13 +17,15 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="/public/css/home.css" rel='stylesheet' type='text/css' />
 </head>
 
 <body>
     <div class="container-fluid">
         <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark>
                     <a class=" navbar-brand" href="#">Q & A</a>
-            <button class="navbar-toggler" style="background-color:white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <button class="navbar-toggler" style="background-color:white" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,28 +43,31 @@
             <h1 style="text-align: center" class="display-4">Node</h1>
             <p style="text-align: center" class="lead">Leave an answer if you have a solution. </p>
         </div>
-        <div class="row mt-sm-4 mt-md-0">
-            <div class="col-sm-12 col-md-8 text-sm-center text-md-left">
-                <h3>Node Questions</h3>
-                <div id="question"></div>
-            </div>
-            <div class="col-sm-12 col-md-4">
-                <h3 class="mb-4">Browse a Topic</h3>
-                <ul id="topic" class="nav flex-column nav-pills">
-                </ul>
+        <div id="gridWrapper">
+            <div class="row mt-sm-4 mt-md-0">
+                <div class="col-sm-12 col-md-4">
+                    <h3 class="mb-4">Browse A Topic</h3>
+                    <ul id="topic" class="nav flex-column nav-pills">
+                    </ul>
+                </div>
+                <div class="col-sm-12 col-md-8 text-sm-center text-md-left">
+                    <h3>Node Questions</h3>
+                    <div id="question"></div>
+                </div>
             </div>
         </div>
-        <br></br>
-        <footer class="page-footer font-small blue">
-            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
-            </div>
-        </footer>
+    </div>
+    <br></br>
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
+        </div>
+    </footer>
 </body>
 <script src="/public/logOut.js"></script>
 <script>
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token
-    fetch('http://localhost:3000/api/question/' + '5d1e65f8ca9684090e6375c8', {
+    fetch('http://localhost:3000/api/' + '5d1e65f8ca9684090e6375c8', {
         method: "GET",
         headers: {
             'Authorization': bearer,
@@ -74,7 +78,9 @@
             console.log(response)
             let html = '';
             for (var i = 0; i < response.length; i++) {
-                html += `<h6>${response[i].question}? Posted By: ${response[i].user.username} <button class="link">Answer</button> </h6>`;
+                html += `<div>`
+                html += `<a  href="http://localhost:8080/question/${response[i]._id}"> ${response[i].question}? Posted By: ${response[i].user.username}</a>`
+                html += `</div>`
             }
             const questionContainer = document.getElementById("question");
             questionContainer.innerHTML = html;
