@@ -91,6 +91,9 @@
                         <div class="form-group">
                             <label for="exampleTextarea">Enter Question</label>
                             <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                            <br></br>
+                            <label for="exampleTextarea">Enter Description</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
                         </div>
                     </div>
                     <!-- Modal footer -->
@@ -161,6 +164,8 @@
     //post question
     const submitQuestion = () => {
         let question = document.getElementById("exampleTextarea").value;
+        let description = document.getElementById("description").value;
+        console.log(description)
         let topic = document.querySelector('input[name="topicSelector"]:checked').value;
         const token = localStorage.getItem('token');
         const bearer = 'Bearer ' + token
@@ -173,6 +178,7 @@
             },
             body: JSON.stringify({
                 question: question,
+                description: description,
                 topic: topic,
                 user: userData
 

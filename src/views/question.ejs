@@ -75,10 +75,11 @@
         })
             .then(res => res.json())
             .then(response => {
-                console.log(response.question)
+                console.log(response)
                 let html = '';
                 html += `<br></br>`
                 html += `<h6 style="text-align: center">${response.question}? Posted By: ${response.user.username} </h6>`;
+                html += `<p style="text-align: center">${response.description}</p>`;
 
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
