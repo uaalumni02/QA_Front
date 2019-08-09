@@ -60,8 +60,8 @@
     </div>
     <br></br>
     <div style="text-align: center" class="wrapper">
-        <button  type="button" class="btn btn-outline-secondary" data-toggle="modal"
-            data-target="#myModal">Ask a Question</button>
+        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">Ask a
+            Question</button>
     </div>
     <br></br>
     <br></br>
@@ -120,10 +120,11 @@
     })
         .then(res => res.json())
         .then(response => {
+            let recentPost = response.slice(-5);
             let html = '';
-            for (var i = 0; i < response.length; i++) {
-                userData = response[i].user._id
-                html += `<h6>${response[i].question}? Posted By: ${response[i].user.username} </h6>`;
+            for (var i = 0; i < recentPost.length; i++) {
+                userData = recentPost[i].user._id
+                html += `<h6>${recentPost[i].question}? Posted By: ${recentPost[i].user.username} </h6>`;
             }
             const questionContainer = document.getElementById("question");
             questionContainer.innerHTML = html;
@@ -140,7 +141,6 @@
         .then(res => res.json())
         .then(response => {
             let html = '';
-            //pass id and load question based on id next page when clicked can also pull topic name from object 
             html += `<li class="nav-item">
                         <a class="nav-link" href="http://localhost:8080/mongodb">${response[0].topic}</a>
                         <a class="nav-link" href="http://localhost:8080/express">${response[1].topic}</a>
@@ -165,7 +165,6 @@
     const submitQuestion = () => {
         let question = document.getElementById("exampleTextarea").value;
         let description = document.getElementById("description").value;
-        console.log(description)
         let topic = document.querySelector('input[name="topicSelector"]:checked').value;
         const token = localStorage.getItem('token');
         const bearer = 'Bearer ' + token
@@ -186,7 +185,6 @@
         })
             .then(res => res.json())
             .then(response => {
-                console.log(response)
             }).catch(error => console.error('Error:', error));
         $('#questionForm').get(0).reset();
     }

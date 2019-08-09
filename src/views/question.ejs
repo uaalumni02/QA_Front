@@ -41,17 +41,20 @@
         </nav>
         <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
             <h1 style="text-align: center" class="display-4">Questions</h1>
-            <p style="text-align: center" class="lead">Leave an answer if you have a solution. </p>
         </div>
         <hr style="width: 1000px">
         <div id='question'></div>
         <hr style="width: 1000px">
         <br></br><br></br>
+        <div id="questionAnswer"></div>
         <center>
-            <textarea rows="4" cols="122">
-        
-            </textarea>
+            <form id="answerForm">
+                <textarea id="answer" rows="4" cols="122"></textarea>
+            </form>
         </center>
+        <div style="text-align: center" class="wrapper">
+            <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
+        </div>
         <br></br><br></br>
         <footer class="page-footer font-small blue">
             <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
@@ -61,7 +64,7 @@
 <script src="/public/logOut.js"></script>
 
 <script>
-
+    let user = ""
     window.addEventListener("load", (req, res) => {
         var url = window.location.pathname;
         var id = url.substring(url.lastIndexOf('/') + 1)
@@ -75,7 +78,7 @@
         })
             .then(res => res.json())
             .then(response => {
-                console.log(response)
+                user = response.user._id;
                 let html = '';
                 html += `<br></br>`
                 html += `<h6 style="text-align: center">${response.question}? Posted By: ${response.user.username} </h6>`;
@@ -87,6 +90,55 @@
             })
             .catch(error => console.error('Error:', error));
     })
+
+    //post answer
+    const submitAnswer = () => {
+        var url = window.location.pathname;
+        var question = url.substring(url.lastIndexOf('/') + 1)
+        console.log(question)
+        let answer = document.getElementById("answer").value;
+        const token = localStorage.getItem('token');
+        const bearer = 'Bearer ' + token
+
+        fetch('http://localhost:3000/api/answer/', {
+            method: "post",
+            headers: {
+                'Authorization': bearer,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                answer: answer,
+                question: question,
+                user: user,
+
+            })
+        })
+            .then(res => res.json())
+            .then(response => {
+            }).catch(error => console.error('Error:', error));
+        $('#answerForm').get(0).reset();
+    }
+    //get answer by question id
+    const token = localStorage.getItem('token');
+    const bearer = 'Bearer ' + token
+    let url = window.location.pathname;
+    let question = url.substring(url.lastIndexOf('/') + 1)
+    fetch('http://localhost:3000/api/answer/' + question, {
+        method: "GET",
+        headers: {
+            'Authorization': bearer,
+        }
+    })
+        .then(res => res.json())
+        .then(response => {
+            let html = '';
+            for (var i = 0; i < response.length; i++) {
+                html += `<p>Answer: ${response[i].answer}</p>`
+            }
+            const answerContainer = document.getElementById("questionAnswer");
+            answerContainer.innerHTML = html;
+        })
+        .catch(error => console.error('Error:', error));
 
 </script>
 
