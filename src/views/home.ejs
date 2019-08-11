@@ -92,7 +92,7 @@
                             <label for="exampleTextarea">Enter Question</label>
                             <textarea onkeyup="searchQuestion()" class="form-control" id="exampleTextarea"
                                 rows="3"></textarea>
-                                <div id="match-list"></div>
+                            <div id="match-list"></div>
                             <br></br>
                             <label for="exampleTextarea">Enter Description</label>
                             <textarea class="form-control" id="description" rows="3"></textarea>
@@ -108,7 +108,6 @@
         </div>
         </div>
     </form>
-
 </body>
 <script src="/public/logOut.js"></script>
 <script>
@@ -133,7 +132,6 @@
             questionContainer.innerHTML = html;
         })
         .catch(error => console.error('Error:', error));
-
     //gettting topics from db
     fetch('http://localhost:3000/api/topic/', {
         method: "GET",
@@ -163,7 +161,6 @@
             modalTopicContainer.innerHTML = radioHtml;
         })
         .catch(error => console.error('Error:', error));
-
     //post question
     const submitQuestion = () => {
         let question = document.getElementById("exampleTextarea").value;
@@ -171,7 +168,6 @@
         let topic = document.querySelector('input[name="topicSelector"]:checked').value;
         const token = localStorage.getItem('token');
         const bearer = 'Bearer ' + token
-
         fetch('http://localhost:3000/api/question/', {
             method: "POST",
             headers: {
@@ -183,15 +179,15 @@
                 description: description,
                 topic: topic,
                 user: userData
-
             })
         })
             .then(res => res.json())
             .then(response => {
             }).catch(error => console.error('Error:', error));
-        $('#questionForm').get(0).reset();
+            $('#myModal').on('hidden.bs.modal', function () { 
+    location.reload();
+});
     }
-
     //autocomplete
     const searchQuestion = () => {
         let question = document.getElementById("exampleTextarea").value;
@@ -229,7 +225,6 @@
                 outputHtml(matches)
             }).catch(error => console.error('Error:', error));
     }
-
 </script>
 
 </html>

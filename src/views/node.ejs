@@ -75,7 +75,6 @@
     })
         .then(res => res.json())
         .then(response => {
-            console.log(response)
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 html += `<div>`
@@ -97,7 +96,6 @@
         .then(res => res.json())
         .then(response => {
             let html = '';
-            //pass id and load question based on id next page when clicked can also pull topic name from object 
             html += `<li class="nav-item">
                                 <a class="nav-link" href="http://localhost:8080/mongodb">${response[0].topic}</a>
                                 <a class="nav-link" href="http://localhost:8080/express">${response[1].topic}</a>

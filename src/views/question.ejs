@@ -95,7 +95,6 @@
     const submitAnswer = () => {
         var url = window.location.pathname;
         var question = url.substring(url.lastIndexOf('/') + 1)
-        console.log(question)
         let answer = document.getElementById("answer").value;
         const token = localStorage.getItem('token');
         const bearer = 'Bearer ' + token
