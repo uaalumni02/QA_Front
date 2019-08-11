@@ -90,7 +90,9 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="exampleTextarea">Enter Question</label>
-                            <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                            <textarea onkeyup="searchQuestion()" class="form-control" id="exampleTextarea"
+                                rows="3"></textarea>
+                                <div id="match-list"></div>
                             <br></br>
                             <label for="exampleTextarea">Enter Description</label>
                             <textarea class="form-control" id="description" rows="3"></textarea>
@@ -106,6 +108,7 @@
         </div>
         </div>
     </form>
+
 </body>
 <script src="/public/logOut.js"></script>
 <script>
@@ -170,7 +173,7 @@
         const bearer = 'Bearer ' + token
 
         fetch('http://localhost:3000/api/question/', {
-            method: "post",
+            method: "POST",
             headers: {
                 'Authorization': bearer,
                 'Content-Type': 'application/json',
@@ -189,6 +192,43 @@
         $('#questionForm').get(0).reset();
     }
 
+    //autocomplete
+    const searchQuestion = () => {
+        let question = document.getElementById("exampleTextarea").value;
+        let matchList = document.getElementById("match-list")
+        const token = localStorage.getItem('token');
+        const bearer = 'Bearer ' + token
+        fetch('http://localhost:3000/api/question/', {
+            method: "get",
+            headers: {
+                'Authorization': bearer,
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(res => res.json())
+            .then(response => {
+                let matches = response.filter(questionData => {
+                    const regex = new RegExp(`^${question}`, 'gi')
+                    return questionData.question.match(regex)
+                });
+                if (question.length === 0) {
+                    matches = [];
+                    matchList.innerHTML = '';
+                }
+                const outputHtml = matches => {
+                    if (matches.length > 0) {
+                        const html = matches.map(match => `
+                        <div class="card card-body mb-1">
+                        <h5>${match.question}</h5>
+                        </div>
+                        `
+                        ).join('')
+                        matchList.innerHTML = html;
+                    }
+                }
+                outputHtml(matches)
+            }).catch(error => console.error('Error:', error));
+    }
 
 </script>
 
