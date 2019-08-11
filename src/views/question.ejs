@@ -41,12 +41,12 @@
         </nav>
         <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
             <h1 style="text-align: center" class="display-4">Questions</h1>
+            <div id='question'></div>
+            <hr style="width: 1000px">
         </div>
-        <hr style="width: 1000px">
-        <div id='question'></div>
-        <hr style="width: 1000px">
+
+        <div style="text-align: center" id="questionAnswer"></div>
         <br></br><br></br>
-        <div id="questionAnswer"></div>
         <center>
             <form id="answerForm">
                 <textarea id="answer" rows="4" cols="122"></textarea>
@@ -116,6 +116,7 @@
             .then(res => res.json())
             .then(response => {
             }).catch(error => console.error('Error:', error));
+            window.location.reload();
         $('#answerForm').get(0).reset();
     }
     //get answer by question id
