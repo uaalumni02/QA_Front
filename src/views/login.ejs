@@ -53,11 +53,12 @@
             })
                 .then(res => res.json())
                 .then(response => {
+                    console.log(response.userId)
                     localStorage.setItem('token', response.token);
                     const password = response.token
                     const localStoragePswd = localStorage.getItem('token', response.token);
                     if (password === localStoragePswd) {
-                        window.location.replace('http://localhost:8080/home/');
+                        window.location.replace('http://localhost:8080/home/' + response.userId);
                     } else {
                         document.getElementById("pswdNotification").style.display = "block";
                     }

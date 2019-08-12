@@ -31,9 +31,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a style="color: black" class="nav-link" href="http://localhost:8080/home">Home</a>
-                    </li>
+                    <!-- <li class="nav-item active">
+                        <a style="color: black" class="nav-link" href="http://localhost:8080/home/">Home</a>
+                    </li> -->
                     <li class="nav-item">
                         <a style="color: black" class="nav-link" onclick="logOut()" href="/">Log Out</a>
                     </li>
@@ -126,7 +126,7 @@
             let html = '';
             for (var i = 0; i < recentPost.length; i++) {
                 userData = recentPost[i].user._id
-                html += `<h6>${recentPost[i].question}? Posted By: ${recentPost[i].user.username} </h6>`;
+                html += `<h6>${recentPost[i].question} </h6>`;
             }
             const questionContainer = document.getElementById("question");
             questionContainer.innerHTML = html;
@@ -163,6 +163,8 @@
         .catch(error => console.error('Error:', error));
     //post question
     const submitQuestion = () => {
+        let url = window.location.pathname;
+        let user = url.substring(url.lastIndexOf('/') + 1)
         let question = document.getElementById("exampleTextarea").value;
         let description = document.getElementById("description").value;
         let topic = document.querySelector('input[name="topicSelector"]:checked').value;
@@ -178,15 +180,15 @@
                 question: question,
                 description: description,
                 topic: topic,
-                user: userData
+                user: user,
             })
         })
             .then(res => res.json())
             .then(response => {
             }).catch(error => console.error('Error:', error));
-            $('#myModal').on('hidden.bs.modal', function () { 
-    location.reload();
-});
+        $('#myModal').on('hidden.bs.modal', function () {
+            location.reload();
+        });
     }
     //autocomplete
     const searchQuestion = () => {

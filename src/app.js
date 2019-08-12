@@ -22,7 +22,7 @@ app.get('/', (req, res) => {
     return res.render('login')
 });
 
-app.get('/home', (req, res) => {
+app.get('/home/:id', (req, res) => {
     return res.render('home')
 });
 

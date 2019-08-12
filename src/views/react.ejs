@@ -17,7 +17,7 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link href="/public/css/home.css" rel='stylesheet' type='text/css' />
+    <link href="/public/css/home.css" rel='stylesheet' type='text/css' />
 </head>
 
 <body>
@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a style="color: black" class="nav-link" href="http://localhost:8080/home">Home</a>
+                        <a id="userInfo"></a>
                     </li>
                     <li class="nav-item">
                         <a style="color: black" class="nav-link" onclick="logOut()" href="/">Log Out</a>
@@ -57,11 +57,11 @@
             </div>
         </div>
     </div>
-        <br></br>
-        <footer class="page-footer font-small blue">
-            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
-            </div>
-        </footer>
+    <br></br>
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
+        </div>
+    </footer>
 </body>
 <script src="/public/logOut.js"></script>
 <script>
@@ -83,6 +83,10 @@
             }
             const questionContainer = document.getElementById("question");
             questionContainer.innerHTML = html;
+            let userHtml = ''
+            userHtml += `<a style="color: black" class="nav-link" href="http://localhost:8080/home/${response[0].user._id}">Home</a>`
+            const navContainer = document.getElementById("userInfo");
+            navContainer.innerHTML = userHtml;
         })
         .catch(error => console.error('Error:', error));
 
