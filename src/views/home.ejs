@@ -87,8 +87,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="exampleTextarea">Enter Question</label>
-                            <input onkeyup="searchQuestion()" class="form-control" id="exampleTextarea"
-                                rows="3">
+                            <input onkeyup="searchQuestion()" class="form-control" id="exampleTextarea" rows="3">
                             <div id="match-list"></div>
                             <br></br>
                             <label for="exampleTextarea">Enter Description</label>
@@ -124,7 +123,9 @@
             let html = '';
             for (var i = 0; i < recentPost.length; i++) {
                 userData = recentPost[i].user._id
-                html += `<h6>${recentPost[i].question} </h6>`;
+                html += `<div>`
+                html += `<a href="http://localhost:8080/${response[i].topic.topic}">${recentPost[i].question}</a>`
+                html += `</div>`
             }
             const questionContainer = document.getElementById("question");
             questionContainer.innerHTML = html;
@@ -213,7 +214,7 @@
                 }
                 if (question.length != matches) {
                     matchList.innerHTML = '';
-                } 
+                }
                 const outputHtml = matches => {
                     if (matches.length > 0) {
                         const html = matches.map(match => `
