@@ -87,8 +87,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="exampleTextarea">Enter Question</label>
-                            <textarea onkeyup="searchQuestion()" class="form-control" id="exampleTextarea"
-                                rows="3"></textarea>
+                            <input onkeyup="searchQuestion()" class="form-control" id="exampleTextarea"
+                                rows="3">
                             <div id="match-list"></div>
                             <br></br>
                             <label for="exampleTextarea">Enter Description</label>
@@ -183,7 +183,6 @@
         })
             .then(res => res.json())
             .then(response => {
-                console.log(response)
             }).catch(error => console.error('Error:', error));
         $('#myModal').on('hidden.bs.modal', function () {
             location.reload();
