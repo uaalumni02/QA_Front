@@ -26,22 +26,12 @@ app.get('/home/:id', (req, res) => {
     return res.render('home')
 });
 
-app.get('/mongodb', (req, res) => {
-    return res.render('mongodb')
-});
-app.get('/express', (req, res) => {
-    return res.render('express')
-});
-
-app.get('/react', (req, res) => {
-    return res.render('react')
-});
-app.get('/node', (req, res) => {
-    return res.render('node')
-});
-
 app.get('/question/:id', (req, res) => {
     return res.render('question')
+});
+
+app.get('/topic/:id', (req, res) => {
+    return res.render('topic')
 });
 
 

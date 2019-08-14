@@ -124,7 +124,7 @@
             for (var i = 0; i < recentPost.length; i++) {
                 userData = recentPost[i].user._id
                 html += `<div>`
-                html += `<a href="http://localhost:8080/${response[i].topic.topic}">${recentPost[i].question}</a>`
+                html += `<a href="http://localhost:8080/question/${recentPost[i]._id}">${recentPost[i].question}</a>`
                 html += `</div>`
             }
             const questionContainer = document.getElementById("question");
@@ -141,12 +141,11 @@
         .then(res => res.json())
         .then(response => {
             let html = '';
-            html += `<li class="nav-item">
-                        <a class="nav-link" href="http://localhost:8080/mongodb">${response[0].topic}</a>
-                        <a class="nav-link" href="http://localhost:8080/express">${response[1].topic}</a>
-                        <a class="nav-link" href="http://localhost:8080/react">${response[2].topic}</a>
-                        <a class="nav-link" href="http://localhost:8080/node">${response[3].topic}</a>
+            for (var i = 0; i < response.length; i++) {
+                html += `<li class="nav-item">
+                        <a class="nav-link" href="http://localhost:8080/topic/${response[i]._id}">${response[i].topic}</a>
                     </li>`
+            }
             const topicContainer = document.getElementById("topic");
             topicContainer.innerHTML = html;
             let radioHtml = '';

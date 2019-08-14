@@ -23,7 +23,7 @@
 <body>
     <div class="container-fluid">
         <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark>
-                    <a class=" navbar-brand" href="#">Q & A</a>
+                <a class=" navbar-brand" href="#">Q & A</a>
             <button class="navbar-toggler" style="background-color:white" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
             </div>
         </nav>
         <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
-            <h1 style="text-align: center" class="display-4">React</h1>
+            <h1 id="questionHeader" style="text-align: center" class="display-4"></h1>
             <p style="text-align: center" class="lead">Leave an answer if you have a solution. </p>
         </div>
         <div id="gridWrapper">
@@ -51,7 +51,7 @@
                     </ul>
                 </div>
                 <div class="col-sm-12 col-md-8 text-sm-center text-md-left">
-                    <h3>React Questions</h3>
+                    <h3>Dynamic Questions</h3>
                     <div id="question"></div>
                 </div>
             </div>
@@ -62,12 +62,37 @@
         <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
         </div>
     </footer>
+
 </body>
 <script src="/public/logOut.js"></script>
 <script>
+
+    //gettting topics from db
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token
-    fetch('http://localhost:3000/api/' + '5d1e65f4ca9684090e6375c7', {
+    fetch('http://localhost:3000/api/topic/', {
+        method: "GET",
+        headers: {
+            'Authorization': bearer,
+        }
+    })
+        .then(res => res.json())
+        .then(response => {
+            let html = '';
+            for (var i = 0; i < response.length; i++) {
+                html += `<li class="nav-item">
+                            <a class="nav-link" href="http://localhost:8080/topic/${response[i]._id}">${response[i].topic}</a>
+                        </li>`
+            }
+            const topicContainer = document.getElementById("topic");
+            topicContainer.innerHTML = html;
+        })
+        .catch(error => console.error('Error:', error));
+
+    //get question by topic
+    let url = window.location.pathname;
+    let topic = url.substring(url.lastIndexOf('/') + 1)
+    fetch('http://localhost:3000/api/' + topic, {
         method: "GET",
         headers: {
             'Authorization': bearer,
@@ -78,7 +103,7 @@
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 html += `<div>`
-                html += `<a  href="http://localhost:8080/question/${response[i]._id}"> ${response[i].question}? Posted By: ${response[i].user.username}</a>`
+                html += `<a  href="http://localhost:8080/question/${response[i]._id}">${response[i].question} ? Posted By: ${response[i].user.username}</a>`
                 html += `</div>`
             }
             const questionContainer = document.getElementById("question");
@@ -87,29 +112,14 @@
             userHtml += `<a style="color: black" class="nav-link" href="http://localhost:8080/home/${response[0].user._id}">Home</a>`
             const navContainer = document.getElementById("userInfo");
             navContainer.innerHTML = userHtml;
+            let topicHtml = ''
+            topicHtml += `<h1>${response[0].topic.topic} </h1>`
+
+            topHeaderContainer = document.getElementById("questionHeader");
+            topHeaderContainer.innerHTML = topicHtml;
         })
         .catch(error => console.error('Error:', error));
 
-    //gettting topics from db
-    fetch('http://localhost:3000/api/topic/', {
-        method: "GET",
-        headers: {
-            'Authorization': bearer,
-        }
-    })
-        .then(res => res.json())
-        .then(response => {
-            let html = '';
-            html += `<li class="nav-item">
-                                <a class="nav-link" href="http://localhost:8080/mongodb">${response[0].topic}</a>
-                                <a class="nav-link" href="http://localhost:8080/express">${response[1].topic}</a>
-                                <a class="nav-link active" href="#">${response[2].topic}</a>
-                                <a class="nav-link" href="http://localhost:8080/node">${response[3].topic}</a>
-                            </li>`
-            const topicContainer = document.getElementById("topic");
-            topicContainer.innerHTML = html;
-        })
-        .catch(error => console.error('Error:', error));
 
 
 </script>
