@@ -34,6 +34,10 @@ app.get('/topic/:id', (req, res) => {
     return res.render('topic')
 });
 
+app.get('/register', (req, res) => {
+    return res.render('register')
+});
+
 
 
 app.listen(port, () => console.log('frontend is live'));
