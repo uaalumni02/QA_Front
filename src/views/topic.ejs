@@ -67,7 +67,7 @@
 <script src="/public/logOut.js"></script>
 <script>
 
-    //gettting topics from db
+    //gettting topics from db 
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token
     fetch('http://localhost:3000/api/topic/', {
@@ -78,10 +78,14 @@
     })
         .then(res => res.json())
         .then(response => {
+            let url = window.location.pathname;
+            let topic = url.substring(url.lastIndexOf('/') + 1)
+            console.log(topic)
             let html = '';
             for (var i = 0; i < response.length; i++) {
+                let activeClass = topic === response[i]._id ? 'active' : '';
                 html += `<li class="nav-item">
-                            <a class="nav-link" href="http://localhost:8080/topic/${response[i]._id}">${response[i].topic}</a>
+                <a class="nav-link ${activeClass}" href="http://localhost:8080/topic/${response[i]._id}">${response[i].topic}</a>
                         </li>`
             }
             const topicContainer = document.getElementById("topic");
@@ -124,8 +128,6 @@
             questionTypeContainer.innerHTML = questionTypeHtml;
         })
         .catch(error => console.error('Error:', error));
-
-
 
 </script>
 
