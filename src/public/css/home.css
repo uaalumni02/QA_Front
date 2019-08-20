@@ -14,5 +14,15 @@ footer {
         border-color: black;
        }
       
-    
-   
+       
+       #questionAnswer {
+        width: 900px;
+        border: 1px solid grey;
+        padding: 0 0 400px 0;
+        margin: auto
+      }
+
+      #answer {
+        width: 900px;
+        padding: 0 0 400px 0;
+      }

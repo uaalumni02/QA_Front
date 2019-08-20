@@ -80,7 +80,6 @@
         .then(response => {
             let url = window.location.pathname;
             let topic = url.substring(url.lastIndexOf('/') + 1)
-            console.log(topic)
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 let activeClass = topic === response[i]._id ? 'active' : '';

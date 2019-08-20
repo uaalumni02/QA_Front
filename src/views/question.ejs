@@ -43,9 +43,9 @@
             <h1 style="text-align: center" class="display-4">Questions</h1>
             <div id='question'></div>
             <hr style="width: 1000px">
+            <div id='userName'></div>
         </div>
-
-        <div style="text-align: center" id="questionAnswer"></div>
+        <div id="questionAnswer"></div>
         <br></br><br></br>
         <center>
             <form id="answerForm">
@@ -81,11 +81,17 @@
                 user = response.user._id;
                 let html = '';
                 html += `<br></br>`
-                html += `<h6 style="text-align: center">${response.question}? Posted By: ${response.user.username} </h6>`;
+                html += `<h6 style="text-align: center">${response.question}?</h6>`;
                 html += `<p style="text-align: center">${response.description}</p>`;
 
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
+
+                let userHtml = ''
+                userHtml += `<p style="margin-left: 1000px";> Posted by: ${response.user.username}</p>`
+
+               const userContainer = document.getElementById("userName");
+                userContainer.innerHTML = userHtml;
 
             })
             .catch(error => console.error('Error:', error));
@@ -115,7 +121,7 @@
             .then(res => res.json())
             .then(response => {
             }).catch(error => console.error('Error:', error));
-            window.location.reload();
+        window.location.reload();
         $('#answerForm').get(0).reset();
     }
     //get answer by question id
