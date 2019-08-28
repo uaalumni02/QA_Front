@@ -40,26 +40,40 @@
             </div>
         </nav>
         <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
-            <h1 style="text-align: center" class="display-4">Questions</h1>
-            <div id='question'></div>
-            <hr style="width: 1000px">
-            <div id='userName'></div>
-        </div>
-        <div id="questionAnswer"></div>
-        <br></br><br></br>
-        <center>
-            <form id="answerForm">
-                <textarea id="answer" rows="4" cols="122"></textarea>
-            </form>
-        </center>
-        <div style="text-align: center" class="wrapper">
-            <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
-        </div>
-        <br></br><br></br>
-        <footer class="page-footer font-small blue">
-            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
+            <div class="container">
+                <div class="row">
+                    <div id="question" class="col-8"></div>
+                    <br></br>
+                    <div id="user" style="margin-left: 450px"></div>
+                </div>
             </div>
-        </footer>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div id="answerCount" class="col-8"></div>
+                <div class="col-4"></div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div id="questionAnswer" class="col-8"></div>
+                    <div id="userName" style="margin-left: 450px"></div>
+                    <div class="col-4"></div>
+                </div>
+            </div>
+            <br></br><br></br>
+            <center>
+                <form id="answerForm">
+                    <textarea id="answer" rows="4" cols="122"></textarea>
+                </form>
+            </center>
+            <div style="text-align: center" class="wrapper">
+                <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
+            </div>
+            <br></br><br></br>
+            <footer class="page-footer font-small blue">
+                <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
+                </div>
+            </footer>
 </body>
 <script src="/public/logOut.js"></script>
 
@@ -78,19 +92,23 @@
         })
             .then(res => res.json())
             .then(response => {
+
+                const timestamp = response._id.toString().substring(0, 8)
+                date = new Date(parseInt(timestamp, 16) * 1000).toLocaleDateString()
+
                 user = response.user._id;
                 let html = '';
+                html += `<h1>${response.question}?</h1>`;
                 html += `<br></br>`
-                html += `<h6 style="text-align: center">${response.question}?</h6>`;
-                html += `<p style="text-align: center">${response.description}</p>`;
+                html += `<p>${response.description}</p>`;
 
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
 
-                let userHtml = ''
-                userHtml += `<p style="margin-left: 1000px";> Posted by: ${response.user.username}</p>`
+                let userHtml = '' 
+                userHtml += `<p> Asked by: ${response.user.username} on ${date}  </p>`
 
-               const userContainer = document.getElementById("userName");
+                const userContainer = document.getElementById("user");
                 userContainer.innerHTML = userHtml;
 
             })
@@ -139,10 +157,24 @@
         .then(response => {
             let html = '';
             for (var i = 0; i < response.length; i++) {
-                html += `<p>Answer: ${response[i].answer}</p>`
+                html += `<p>${response[i].answer}</p>`
             }
             const answerContainer = document.getElementById("questionAnswer");
             answerContainer.innerHTML = html;
+
+            let countHtml = ''
+            countHtml += `<div>`
+            countHtml += `<h4>${response.length} Answer</h4>`
+            countHtml += `</div>`
+            const countContainer = document.getElementById('answerCount');
+            countContainer.innerHTML = countHtml;
+
+            let userHtml = ''
+            for (var i = 0; i < response.length; i++) {
+                userHtml += `<p>Posted by: ${response[i].user.username}</p>`
+            }
+            const userContainer = document.getElementById("userName");
+            userContainer.innerHTML = userHtml;
         })
         .catch(error => console.error('Error:', error));
 
