@@ -43,8 +43,6 @@
             <div class="container">
                 <div class="row">
                     <div id="question" class="col-8"></div>
-                    <br></br>
-                    <div id="user" style="margin-left: 450px"></div>
                 </div>
             </div>
         </div>
@@ -53,27 +51,27 @@
                 <div id="answerCount" class="col-8"></div>
                 <div class="col-4"></div>
             </div>
+        </div>
             <div class="container">
                 <div class="row">
                     <div id="questionAnswer" class="col-8"></div>
-                    <div id="userName" style="margin-left: 450px"></div>
                     <div class="col-4"></div>
                 </div>
             </div>
-            <br></br><br></br>
-            <center>
-                <form id="answerForm">
-                    <textarea id="answer" rows="4" cols="122"></textarea>
-                </form>
-            </center>
-            <div style="text-align: center" class="wrapper">
-                <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
+        <br></br><br></br>
+        <center>
+            <form id="answerForm">
+                <textarea id="answer" rows="4" cols="122"></textarea>
+            </form>
+        </center>
+        <div style="text-align: center" class="wrapper">
+            <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
+        </div>
+        <br></br><br></br>
+        <footer class="page-footer font-small blue">
+            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
             </div>
-            <br></br><br></br>
-            <footer class="page-footer font-small blue">
-                <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
-                </div>
-            </footer>
+        </footer>
 </body>
 <script src="/public/logOut.js"></script>
 
@@ -101,15 +99,10 @@
                 html += `<h1>${response.question}?</h1>`;
                 html += `<br></br>`
                 html += `<p>${response.description}</p>`;
-
+                html += `<p class="float-right"> Asked by: ${response.user.username} on ${date}  </p>`
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
 
-                let userHtml = ''
-                userHtml += `<p> Asked by: ${response.user.username} on ${date}  </p>`
-
-                const userContainer = document.getElementById("user");
-                userContainer.innerHTML = userHtml;
 
             })
             .catch(error => console.error('Error:', error));
@@ -159,6 +152,8 @@
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 html += `<p>${response[i].answer}</p>`
+                html += `<p class="float-right">Posted by: ${response[i].user.username}</p>`
+                html += `<br></br>`
             }
             const answerContainer = document.getElementById("questionAnswer");
             answerContainer.innerHTML = html;
@@ -169,13 +164,6 @@
             countHtml += `</div>`
             const countContainer = document.getElementById('answerCount');
             countContainer.innerHTML = countHtml;
-
-            let userHtml = ''
-            for (var i = 0; i < response.length; i++) {
-                userHtml += `<p>Posted by: ${response[i].user.username}</p>`
-            }
-            const userContainer = document.getElementById("userName");
-            userContainer.innerHTML = userHtml;
         })
         .catch(error => console.error('Error:', error));
 
