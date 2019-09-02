@@ -54,6 +54,7 @@
                 .then(res => res.json())
                 .then(response => {
                     localStorage.setItem('token', response.token);
+                    localStorage.setItem('user', response.userId);
                     const password = response.token
                     const localStoragePswd = localStorage.getItem('token', response.token);
                     if (password === localStoragePswd) {

@@ -105,7 +105,7 @@
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
 
-                let userHtml = '' 
+                let userHtml = ''
                 userHtml += `<p> Asked by: ${response.user.username} on ${date}  </p>`
 
                 const userContainer = document.getElementById("user");
@@ -117,6 +117,7 @@
 
     //post answer
     const submitAnswer = () => {
+        const _id = localStorage.getItem('user');
         var url = window.location.pathname;
         var question = url.substring(url.lastIndexOf('/') + 1)
         let answer = document.getElementById("answer").value;
@@ -132,7 +133,7 @@
             body: JSON.stringify({
                 answer: answer,
                 question: question,
-                user: user,
+                user: _id
 
             })
         })
@@ -177,6 +178,7 @@
             userContainer.innerHTML = userHtml;
         })
         .catch(error => console.error('Error:', error));
+
 
 </script>
 
