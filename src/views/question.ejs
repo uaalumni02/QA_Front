@@ -52,12 +52,12 @@
                 <div class="col-4"></div>
             </div>
         </div>
-            <div class="container">
-                <div class="row">
-                    <div id="questionAnswer" class="col-8"></div>
-                    <div class="col-4"></div>
-                </div>
+        <div class="container">
+            <div class="row">
+                <div id="questionAnswer" class="col-8"></div>
+                <div class="col-4"></div>
             </div>
+        </div>
         <br></br><br></br>
         <center>
             <form id="answerForm">
@@ -160,7 +160,11 @@
 
             let countHtml = ''
             countHtml += `<div>`
-            countHtml += `<h4>${response.length} Answer</h4>`
+            if (response.length == 1) {
+                countHtml += `<h4>${response.length} Answer</h4>`
+            } else {
+                countHtml += `<h4>${response.length} Answers</h4>`
+            }
             countHtml += `</div>`
             const countContainer = document.getElementById('answerCount');
             countContainer.innerHTML = countHtml;
