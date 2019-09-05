@@ -15,12 +15,18 @@ footer {
       #answer {
         width: 700px;
         padding: 0 0 300px 0;
+        border-color: #66757d
       }
-      .container {
+      .container-grid {
         display: flex;
-        justify-content: center;
-        align-items: center;
+         justify-content: center;
+        align-items: center; 
     }
-      
-      
+    @media screen and (max-width: 600px) {
+      .display-4 {
+        font-size: 30px;
+      }
+    }
+    
+   
       
