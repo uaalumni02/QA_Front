@@ -30,5 +30,12 @@ footer {
     .container-fluid {
       padding: 0;
     }
-   
+
+   #answerForm {
+     margin-right: 400px;
+   }
+
+   .wrapper {
+     margin-left: 450px;
+   }
       
