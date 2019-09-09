@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a style="color: black" class="nav-link" href="http://localhost:8080/home/:id">Home</a>
+                        <a id="userInfo"></a>
                     </li>
                     <li class="nav-item">
                         <a style="color: black" class="nav-link" onclick="logOut()" href="/">Log Out</a>
@@ -90,7 +90,6 @@
         })
             .then(res => res.json())
             .then(response => {
-
                 const timestamp = response._id.toString().substring(0, 8)
                 date = new Date(parseInt(timestamp, 16) * 1000).toLocaleDateString()
 
@@ -102,7 +101,11 @@
                 html += `<p class="float-right"> Asked by: ${response.user.username} on ${date}  </p>`
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
-
+         
+                let userHtml = ''
+                userHtml += `<a style="color: black" class="nav-link" href="http://localhost:8080/home/${response.user._id}">Home</a>`
+                const navContainer = document.getElementById("userInfo");
+                navContainer.innerHTML = userHtml;
 
             })
             .catch(error => console.error('Error:', error));
