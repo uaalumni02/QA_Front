@@ -28,7 +28,8 @@ footer {
     @media screen and (max-width: 850px){
       .container-fluid {
         padding: 0;
-        width: 115%
+        width: 420px;
+       
       }
     }
     
