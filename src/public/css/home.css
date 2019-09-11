@@ -25,14 +25,16 @@ footer {
         padding: 0;
       }
     }
-    @media screen and (max-width: 420px){
+    @media screen and (max-width: 850px){
       .container-fluid {
         padding: 0;
+        width: 100%
       }
     }
-    @media screen and (max-width: 420px){
+    @media screen and (max-width: 850px){
       .navbar {
-        width: 100%
+        width: 100%;
+        padding: 1;
       }
     }
     @media screen and (min-width: 1024px){
