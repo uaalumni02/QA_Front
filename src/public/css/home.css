@@ -3,20 +3,12 @@ footer {
     display: flex;
     justify-content: center;
     }
-     .nav-link {
-       width: 100px;
-      }
       
       hr{
         border-color: black;
        }
       
 
-      #answer {
-        width: 700px;
-        padding: 0 0 300px 0;
-        border-color: #66757d
-      }
       .container-grid {
         display: flex;
          justify-content: center;
@@ -27,20 +19,73 @@ footer {
         font-size: 30px;
       }
     }
-    .container-fluid {
-      padding: 0;
+
+    @media screen and (min-width: 1024px){
+      .container-fluid {
+        padding: 0;
+      }
     }
-
-   #answerForm {
-     margin-right: 400px;
-   }
-
-   .wrapper {
-     margin-left: 450px;
-   }
+    @media screen and (max-width: 420px){
+      .container-fluid {
+        padding: 0;
+      }
+    }
+    @media screen and (max-width: 420px){
+      .navbar {
+        width: 100%
+      }
+    }
+    @media screen and (min-width: 1024px){
+      #answerForm {
+        margin-right: 400px;
+      }
+    }
+    @media screen and (max-width: 850px){
+      #answerForm {
+        margin-right: 400px;
+      }
+    }
+    @media screen and (min-width: 1024px){
+      #answer {
+        width: 700px;
+        padding: 0 0 300px 0;
+        border-color: #66757d
+      }
+    }
+    @media screen and (max-width: 800px){
+      #answer {
+        width: 350px;
+        padding: 0 0 300px 0;
+        border-color: #66757d;
+       margin-left: 10px;
+       margin-right: 10px
+      }
+    }
+    
+   @media screen and (min-width: 1024px){
+    .wrapper {
+      margin-left: 450px;
+    }
+  }
+  @media screen and (max-width: 850px){
+    .wrapper {
+      margin-left: 115px;
+    }
+  }
   
    .container {
     display: flex;
      justify-content: center;
     align-items: center; 
+}
+
+@media screen and (min-width: 1024px){
+  .answerContainer {
+    margin-left: 163px;
+  }
+}
+@media screen and (max-width: 950px){
+  .answerContainer {
+    margin-right: 100px;
+  }
 }
