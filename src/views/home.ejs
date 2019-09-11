@@ -42,72 +42,71 @@
             <p style="text-align: center" class="lead">Post a question or leave an answer if you have a solution. </p>
         </div>
 
-        <div class="container-grid">
-            <div class="row mt-sm-4 mt-md-0">
-                <div class="col-sm-12 col-md-4">
+        <div class="container">
+            <div class="row">
+                <div class="col">
                     <h3 class="mb-4">Browse a Topic</h3>
                     <ul id="topic" class="nav flex-column nav-pills">
                     </ul>
                 </div>
-                <div class="col-sm-12 col-md-8 text-sm-center text-md-left">
+                <div class="col">
                     <h3>Recently Posted Questions</h3>
                     <br>
                     <div id="question"></div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <br></br>
-    <div class="btnWrapper">
-        <center>
-            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">Ask a
-                Question</button>
-        </center>
-    </div>
-    <br></br>
-    <br></br>
-    <footer class="page-footer font-small blue">
-        <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
+        <br></br>
+        <div class="btnWrapper">
+            <center>
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">Ask a
+                    Question</button>
+            </center>
         </div>
-    </footer>
-    <!-- The Modal -->
-    <form id="questionForm">
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Select Topic
-                            </button>
-                            <div id="modalTopic" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <br></br>
+        <br></br>
+        <footer class="page-footer font-small blue">
+            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
+            </div>
+        </footer>
+        <!-- The Modal -->
+        <form id="questionForm">
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Select Topic
+                                </button>
+                                <div id="modalTopic" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                </div>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="exampleTextarea">Enter Question</label>
+                                <input onkeyup="searchQuestion()" class="form-control" id="exampleTextarea" rows="3">
+                                <div id="match-list"></div>
+                                <br></br>
+                                <label for="exampleTextarea">Enter Description</label>
+                                <textarea class="form-control" id="description" rows="3"></textarea>
                             </div>
                         </div>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="exampleTextarea">Enter Question</label>
-                            <input onkeyup="searchQuestion()" class="form-control" id="exampleTextarea" rows="3">
-                            <div id="match-list"></div>
-                            <br></br>
-                            <label for="exampleTextarea">Enter Description</label>
-                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" onclick="submitQuestion()" class="btn btn-secondary"
+                                data-dismiss="modal">Save</button>
                         </div>
-                    </div>
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" onclick="submitQuestion()" class="btn btn-secondary"
-                            data-dismiss="modal">Save</button>
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
+    </div>
     </form>
 </body>
 <script src="/public/logOut.js"></script>
