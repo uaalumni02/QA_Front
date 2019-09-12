@@ -41,7 +41,7 @@
             let username = document.getElementById("username").value;
             let password = document.getElementById("password").value;
             event.preventDefault();
-            fetch('http://localhost:3000/api/user/login', {
+            fetch('https://question-answer-api.herokuapp.com/api/user/login', {
                 method: "post",
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,7 +58,7 @@
                     const password = response.token
                     const localStoragePswd = localStorage.getItem('token', response.token);
                     if (password === localStoragePswd) {
-                        window.location.replace('http://localhost:8080/home/' + response.userId);
+                        window.location.replace('https://question-answer-front.herokuapp.com/home/' + response.userId);
                     } else {
                         document.getElementById("pswdNotification").style.display = "block";
                     }
