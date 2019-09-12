@@ -21,9 +21,8 @@
 </head>
 
 <body>
-    <div class="container-fluid">
         <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark">
-                    <a class="navbar-brand" href="#">Q & A</a>
+            <a class="navbar-brand" href="#">Q & A</a>
             <button class="navbar-toggler" style="background-color:white" type="button" data-toggle="collapse"
                 data-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
@@ -40,38 +39,31 @@
             </div>
         </nav>
         <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
-            <div class="container">
-                <div class="row">
-                    <div id="question" class="col-8"></div>
+            <div class="row">
+                <div class="col-sm-6" id="question"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6" id="answerCount"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6" id="questionAnswer"></div>
+            </div>
+            <br></br><br></br>
+                <form id="answerForm">
+                    <div class="form-group col-sm-6">
+                        <textarea class="form-control" id="answer" rows="18"></textarea>
+                      </div>
+                </form>
+            <div class="wrapper col-sm-6">
+                <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
+            </div>
+            <br></br><br></br>
+            <footer class="page-footer font-small blue">
+                <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
                 </div>
-            </div>
-        </div>
-        <div class="answerContainer">
-            <div class="row">
-                <div id="answerCount" class="col-8"></div>
-                <div class="col-4"></div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div id="questionAnswer" class="col-8"></div>
-                <div class="col-4"></div>
-            </div>
-        </div>
-        <br></br><br></br>
-        <center>
-            <form id="answerForm">
-                <textarea id="answer" rows="4" cols="122"></textarea>
-            </form>
-        </center>
-        <div class="wrapper">
-            <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
-        </div>
-        <br></br><br></br>
-        <footer class="page-footer font-small blue">
-            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
-            </div>
-        </footer>
+            </footer>
 </body>
 <script src="/public/logOut.js"></script>
 
@@ -92,7 +84,6 @@
             .then(response => {
                 const timestamp = response._id.toString().substring(0, 8)
                 date = new Date(parseInt(timestamp, 16) * 1000).toLocaleDateString()
-
                 user = response.user._id;
                 let html = '';
                 html += `<h1>${response.question}?</h1>`;
@@ -101,16 +92,14 @@
                 html += `<p class="float-right"> Asked by: ${response.user.username} on ${date}  </p>`
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
-         
+
                 let userHtml = ''
                 userHtml += `<a style="color: black" class="nav-link" href="http://localhost:8080/home/${response.user._id}">Home</a>`
                 const navContainer = document.getElementById("userInfo");
                 navContainer.innerHTML = userHtml;
-
             })
             .catch(error => console.error('Error:', error));
     })
-
     //post answer
     const submitAnswer = () => {
         const _id = localStorage.getItem('user');
@@ -119,7 +108,6 @@
         let answer = document.getElementById("answer").value;
         const token = localStorage.getItem('token');
         const bearer = 'Bearer ' + token
-
         fetch('http://localhost:3000/api/answer/', {
             method: "post",
             headers: {
@@ -130,7 +118,6 @@
                 answer: answer,
                 question: question,
                 user: _id
-
             })
         })
             .then(res => res.json())
@@ -160,7 +147,6 @@
             }
             const answerContainer = document.getElementById("questionAnswer");
             answerContainer.innerHTML = html;
-
             let countHtml = ''
             countHtml += `<div>`
             if (response.length == 1) {
@@ -173,8 +159,6 @@
             countContainer.innerHTML = countHtml;
         })
         .catch(error => console.error('Error:', error));
-
-
 </script>
 
 </html>
