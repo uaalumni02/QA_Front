@@ -33,7 +33,7 @@
                         <a id="userInfo"></a>
                     </li>
                     <li class="nav-item">
-                        <a style="color: black" class="nav-link" onclick="logOut()" href="/">Log Out</a>
+                        <a style="color: black" class="nav-link" onclick="logOut()" href="https://question-answer-front.herokuapp.com">Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -75,7 +75,7 @@
         var id = url.substring(url.lastIndexOf('/') + 1)
         const token = localStorage.getItem('token');
         const bearer = 'Bearer ' + token
-        fetch('http://localhost:3000/api/question/' + id, {
+        fetch('https://question-answer-api.herokuapp.com/api/question/' + id, {
             method: "GET",
             headers: {
                 'Authorization': bearer,
@@ -95,7 +95,7 @@
                 questionContainer.innerHTML = html;
 
                 let userHtml = ''
-                userHtml += `<a style="color: black" class="nav-link" href="http://localhost:8080/home/${response.user._id}">Home</a>`
+                userHtml += `<a style="color: black" class="nav-link" href="https://question-answer-front.herokuapp.com/home/${response.user._id}">Home</a>`
                 const navContainer = document.getElementById("userInfo");
                 navContainer.innerHTML = userHtml;
             })
@@ -109,7 +109,7 @@
         let answer = document.getElementById("answer").value;
         const token = localStorage.getItem('token');
         const bearer = 'Bearer ' + token
-        fetch('http://localhost:3000/api/answer/', {
+        fetch('https://question-answer-api.herokuapp.com/api/answer/', {
             method: "post",
             headers: {
                 'Authorization': bearer,
@@ -132,7 +132,7 @@
     const bearer = 'Bearer ' + token
     let url = window.location.pathname;
     let question = url.substring(url.lastIndexOf('/') + 1)
-    fetch('http://localhost:3000/api/answer/' + question, {
+    fetch('https://question-answer-api.herokuapp.com/api/answer/' + question, {
         method: "GET",
         headers: {
             'Authorization': bearer,
