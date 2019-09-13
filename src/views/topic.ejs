@@ -33,7 +33,7 @@
                         <a id="userInfo"></a>
                     </li>
                     <li class="nav-item">
-                        <a style="color: black" class="nav-link" onclick="logOut()" href="/">Log Out</a>
+                        <a style="color: black" class="nav-link" onclick="logOut()" href="https://question-answer-front.herokuapp.com">Log Out</a>
                     </li>
                 </ul>
             </div>
@@ -69,7 +69,7 @@
     //gettting topics from db 
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token
-    fetch('http://localhost:3000/api/topic/', {
+    fetch('https://question-answer-api.herokuapp.com/api/topic/', {
         method: "GET",
         headers: {
             'Authorization': bearer,
@@ -83,7 +83,7 @@
             for (var i = 0; i < response.length; i++) {
                 let activeClass = topic === response[i]._id ? 'active' : '';
                 html += `<li class="nav-item">
-                <a class="nav-link ${activeClass}" href="http://localhost:8080/topic/${response[i]._id}">${response[i].topic}</a>
+                <a class="nav-link ${activeClass}" href="https://question-answer-front.herokuapp.com/topic/${response[i]._id}">${response[i].topic}</a>
                         </li>`
             }
             const topicContainer = document.getElementById("topic");
@@ -94,7 +94,7 @@
     //get question by topic
     let url = window.location.pathname;
     let topic = url.substring(url.lastIndexOf('/') + 1)
-    fetch('http://localhost:3000/api/' + topic, {
+    fetch('https://question-answer-api.herokuapp.com/api/' + topic, {
         method: "GET",
         headers: {
             'Authorization': bearer,
@@ -105,13 +105,13 @@
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 html += `<div>`
-                html += `<a  href="http://localhost:8080/question/${response[i]._id}">${response[i].question} ? Posted By: ${response[i].user.username}</a>`
+                html += `<a  href="https://question-answer-front.herokuapp.com/question/${response[i]._id}">${response[i].question} ? Posted By: ${response[i].user.username}</a>`
                 html += `</div>`
             }
             const questionContainer = document.getElementById("question");
             questionContainer.innerHTML = html;
             let userHtml = ''
-            userHtml += `<a style="color: black" class="nav-link" href="http://localhost:8080/home/${response[0].user._id}">Home</a>`
+            userHtml += `<a style="color: black" class="nav-link" href="https://question-answer-front.herokuapp.com/home/${response[0].user._id}">Home</a>`
             const navContainer = document.getElementById("userInfo");
             navContainer.innerHTML = userHtml;
             let topicHtml = ''
