@@ -53,12 +53,13 @@
             })
                 .then(res => res.json())
                 .then(response => {
-                    localStorage.setItem('token', response.token);
-                    localStorage.setItem('user', response.userId);
-                    const password = response.token
-                    const localStoragePswd = localStorage.getItem('token', response.token);
+                    console.log(response)
+                    localStorage.setItem('token', response.data.token);
+                    localStorage.setItem('user', response.data.user._id);
+                    const password = response.data.token
+                    const localStoragePswd = localStorage.getItem('token', response.data.token);
                     if (password === localStoragePswd) {
-                        window.location.replace('https://question-answer-front.herokuapp.com/home/' + response.userId);
+                        window.location.replace('https://question-answer-front.herokuapp.com/home/' + response.data.user_id);
                     } else {
                         document.getElementById("pswdNotification").style.display = "block";
                     }
