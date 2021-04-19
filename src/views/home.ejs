@@ -112,7 +112,6 @@
 <script>
     const token = localStorage.getItem('token');
     const bearer = 'Bearer ' + token
-    let userData = ""
     fetch('https://question-answer-api.herokuapp.com/api/question/', {
         method: "GET",
         headers: {
@@ -125,7 +124,7 @@
             recentPost.reverse();
             let html = '';
             for (var i = 0; i < recentPost.length; i++) {
-                userData = recentPost[i].user._id
+                console.log(recentPost[i].question)
                 html += `<div>`
                 html += `<a href="https://question-answer-front.herokuapp.com/question/${recentPost[i]._id}">${recentPost[i].question}</a>`
                 html += `</div>`
