@@ -94,7 +94,7 @@
     //get question by topic
     let url = window.location.pathname;
     let topic = url.substring(url.lastIndexOf('/') + 1)
-    fetch('https://question-answer-api.herokuapp.com/api/question/topic' + topic, {
+    fetch('https://question-answer-api.herokuapp.com/api/question/topic/' + topic, {
         method: "GET",
         headers: {
             'Authorization': bearer,
