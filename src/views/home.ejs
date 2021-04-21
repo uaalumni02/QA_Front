@@ -50,7 +50,6 @@
                 </div>
                 <div class="col">
                     <h3>Recently Posted Questions</h3>
-                    <br>
                     <div id="question"></div>
                 </div>
             </div>
@@ -126,7 +125,7 @@
             for (var i = 0; i < recentPost.length; i++) {
                 console.log(recentPost[i].question)
                 html += `<div>`
-                html += `<a href="https://question-answer-front.herokuapp.com/question/${recentPost[i]._id}">${recentPost[i].question}</a>`
+                html += `<a class="recentQuestion" href="https://question-answer-front.herokuapp.com/question/${recentPost[i]._id}">${recentPost[i].question}</a>`
                 html += `</div>`
             }
             const questionContainer = document.getElementById("question");

@@ -29,3 +29,19 @@ footer {
 .nav-link {
   width: 100px;
 }
+
+.nav {
+  margin-top: -20px;
+}
+
+a {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  font-size: 18px;
+}
+.recentQuestion {
+  font-size: 18px;
+  color: black;
+}

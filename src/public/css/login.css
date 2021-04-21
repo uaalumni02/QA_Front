@@ -19,6 +19,15 @@
   display: none;
 }
 
-
-
+.btn {
+  margin-top: 10px;
+}
+.checkbox {
+  margin-left: 220px;
+}
+#spin {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+}
 
