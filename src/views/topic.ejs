@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="/public/css/home.css" rel='stylesheet' type='text/css' />
+    <link href="/public/css/topic.css" rel='stylesheet' type='text/css' />
 </head>
 
 <body>
@@ -105,7 +106,7 @@
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 html += `<div>`
-                html += `<a  href="https://question-answer-front.herokuapp.com/question/${response[i]._id}">${response[i].question} ? Posted By: ${response[i].user.username}</a>`
+                html += `<a  class="question" href="https://question-answer-front.herokuapp.com/question/${response[i]._id}">${response[i].question} ? Posted By: ${response[i].user.username}</a>`
                 html += `</div>`
             }
             const questionContainer = document.getElementById("question");
