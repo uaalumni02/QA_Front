@@ -142,7 +142,7 @@
         .then(response => {
             let html = '';
             for (var i = 0; i < response.length; i++) {
-                html += `<p>${response[i].answer}</p>`
+                html += `<h6>${response[i].answer}</h6>`
                 html += `<h4 class="float-right">Posted by: ${response[i].user.username}<h4>`
                 html += `<br></br>`
             }
