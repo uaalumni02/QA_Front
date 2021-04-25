@@ -43,14 +43,16 @@
     <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
         <div class="row">
             <div class="col-sm-9" id="question"></div>
+            <div class="col-sm-3" id="answerCount"></div>
         </div>
         <br></br>
         <div class="row">
-            <div class="col-sm-9" id="answerCount"></div>
+            <!-- <div class="col-sm-9" id="answerCount"></div> -->
         </div>
         <div class="row">
             <div class="col-sm-9" id="questionAnswer"></div>
         </div>
+
         <br></br>
         <form id="answerForm">
             <div class="form-group col-sm-9">
@@ -123,7 +125,6 @@
         })
             .then(res => res.json())
             .then(response => {
-                console.log(response)
             }).catch(error => console.error('Error:', error));
         window.location.reload();
         $('#answerForm').get(0).reset();
@@ -143,6 +144,7 @@
         .then(response => {
             let html = '';
             for (var i = 0; i < response.length; i++) {
+                html += `<hr></hr>`
                 html += `<h6>${response[i].answer}</h6>`
                 html += `<h4 class="float-right">Posted by: ${response[i].user.username}<h4>`
                 html += `<br></br>`
