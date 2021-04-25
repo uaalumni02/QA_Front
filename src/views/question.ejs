@@ -18,53 +18,54 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="/public/css/home.css" rel='stylesheet' type='text/css' />
+    <link href="/public/css/question.css" rel='stylesheet' type='text/css' />
 </head>
 
 <body>
-        <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="#">Q & A</a>
-            <button class="navbar-toggler" style="background-color:white" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a id="userInfo"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a style="color: black" class="nav-link" onclick="logOut()" href="https://question-answer-front.herokuapp.com">Log Out</a>
-                    </li>
-                </ul>
+    <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Q & A</a>
+        <button class="navbar-toggler" style="background-color:white" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a id="userInfo"></a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: black" class="nav-link" onclick="logOut()"
+                        href="https://question-answer-front.herokuapp.com">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
+        <div class="row">
+            <div class="col-sm-9" id="question"></div>
+        </div>
+        <br></br>
+        <div class="row">
+            <div class="col-sm-9" id="answerCount"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9" id="questionAnswer"></div>
+        </div>
+        <br></br>
+        <form id="answerForm">
+            <div class="form-group col-sm-9">
+                <label for="title">Answer here... </label>
+                <textarea class="form-control" id="answer" rows="9"></textarea>
             </div>
-        </nav>
-        <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
-            <div class="row">
-                <div class="col-sm-9" id="question"></div>
+        </form>
+        <div class="wrapper col-sm-9">
+            <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
+        </div>
+        <br></br><br></br>
+        <footer class="page-footer font-small blue">
+            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
             </div>
-
-            <div class="row">
-                <div class="col-sm-9" id="answerCount"></div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-9" id="questionAnswer"></div>
-            </div>
-            <br></br>
-                <form id="answerForm">
-                    <div class="form-group col-sm-9">
-                            <label for="title">Answer here... </label>
-                        <textarea class="form-control" id="answer" rows="9"></textarea>
-                      </div>
-                </form>
-            <div class="wrapper col-sm-9">
-                <button type="button" onclick="submitAnswer()" class="btn btn-outline-secondary">Submit Answer</button>
-            </div>
-            <br></br><br></br>
-            <footer class="page-footer font-small blue">
-                <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
-                </div>
-            </footer>
+        </footer>
 </body>
 <script src="/public/logOut.js"></script>
 
