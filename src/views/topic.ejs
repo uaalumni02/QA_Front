@@ -106,7 +106,7 @@
             let html = '';
             for (var i = 0; i < response.length; i++) {
                 html += `<div>`
-                html += `<a  class="question" href="https://question-answer-front.herokuapp.com/question/${response[i]._id}">${response[i].question} ? Posted By: ${response[i].user.username}</a>`
+                html += `<a  class="question" href="https://question-answer-front.herokuapp.com/question/${response[i]._id}">${response[i].question} </a>`
                 html += `</div>`
             }
             const questionContainer = document.getElementById("question");
