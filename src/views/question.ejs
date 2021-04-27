@@ -154,7 +154,7 @@
             for (var i = 0; i < response.length; i++) {
                 // html += `<hr></hr>`
                 html += `<p>${response[i].answer}</p>`
-                html += `<p  class="float-right">${response[i].user.username}<hp>`
+                html += `<p id="answerUserName" class="float-right">${response[i].user.username}</p>`
                 html += `<br></br>`
             }
             const answerContainer = document.getElementById("questionAnswer");

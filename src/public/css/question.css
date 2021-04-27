@@ -30,10 +30,15 @@ hr {
 
 #questionUserName {
   background-color: lightgrey;
-  padding: 15px;
+  padding: 10px;
   margin-top: 15px;
   border-radius: 5px;
 }
-#questionAnswer{
+#questionAnswer {
   line-height: 30px;
+}
+#answerUserName {
+  background-color: lightgrey;
+  padding: 7px;
+  border-radius: 5px;
 }
