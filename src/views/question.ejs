@@ -40,7 +40,6 @@
             </ul>
         </div>
     </nav>
-    <div id="topic"></div>
     <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
         <div class="row">
             <div class="col-sm-9" id="question"></div>
@@ -86,14 +85,14 @@
         })
             .then(res => res.json())
             .then(response => {
-                console.log(response.topic.topic)
+                console.log(response.topic._id)
                 const timestamp = response._id.toString().substring(0, 8)
                 date = new Date(parseInt(timestamp, 16) * 1000).toDateString()
                 user = response.user._id;
                 let html = '';
                 html += `<h1>${response.question}?</h1>`;
                 html += `<p>${response.description}</p>`;
-                // html += `<h4 class="float-right"> ${response.user.username} on ${date}  </h4>`
+                html += `<a  class="button" href="https://question-answer-front.herokuapp.com/topic/${response.topic._id}">${response.topic.topic}</a>`
                 html += `<p class="float-right"> ${response.user.username}</p>`
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
@@ -110,11 +109,6 @@
                 navContainer.innerHTML = userHtml;
 
 
-
-                let topicHtml = ""
-                topicHtml += `<h1>Topic: ${response.topic.topic}</h1>`;
-                const topicContainer = document.getElementById("topic");
-                topicContainer.innerHTML = topicHtml;
             })
             .catch(error => console.error('Error:', error));
     })
