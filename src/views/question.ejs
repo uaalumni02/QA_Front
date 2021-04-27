@@ -44,8 +44,9 @@
     <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
         <div class="row">
             <div class="col-sm-9" id="question"></div>
-            <div class="col-sm-3" id="answerCount"></div>
+            <div class="col-sm-9" id="date"></div>
         </div>
+        <div class="col-sm-3" id="answerCount"></div>
         <br></br>
 
         <div class="row">
@@ -92,9 +93,16 @@
                 let html = '';
                 html += `<h1>${response.question}?</h1>`;
                 html += `<p>${response.description}</p>`;
-                html += `<h4 class="float-right"> Asked by: ${response.user.username} on ${date}  </h4>`
+                // html += `<h4 class="float-right"> ${response.user.username} on ${date}  </h4>`
+                html += `<p class="float-right"> ${response.user.username}</p>`
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
+
+
+                let dateHtml = ""
+                dateHtml += `<p class="float-right">${date}</p>`;
+                const dateContainer = document.getElementById("date");
+                dateContainer.innerHTML = dateHtml;
 
                 let userHtml = ''
                 userHtml += `<a style="color: black" class="nav-link" href="https://question-answer-front.herokuapp.com/home/${response.user._id}">Home</a>`
@@ -153,7 +161,7 @@
             for (var i = 0; i < response.length; i++) {
                 html += `<hr></hr>`
                 html += `<h6>${response[i].answer}</h6>`
-                html += `<h4 class="float-right">Posted by: ${response[i].user.username}<h4>`
+                html += `<h4 class="float-right">${response[i].user.username}<h4>`
                 html += `<br></br>`
             }
             const answerContainer = document.getElementById("questionAnswer");

@@ -1,7 +1,4 @@
-#question {
-  border: 1px solid black;
-  background-color: grey;
-}
+
 
 /* #questionAnswer{
    background-color: grey;
@@ -15,4 +12,8 @@ hr {
 
 #topic{
 text-align: center;
+}
+
+#date {
+ margin-top: -17px;
 }
