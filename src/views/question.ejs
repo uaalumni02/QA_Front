@@ -86,13 +86,13 @@
             .then(res => res.json())
             .then(response => {
                 const timestamp = response._id.toString().substring(0, 8)
-                date = new Date(parseInt(timestamp, 16) * 1000).toDateString()
+                date = new Date(parseInt(timestamp, 16) * 1000).toDateString().split(' ').slice(1).join(' ')
                 user = response.user._id;
                 let html = '';
                 html += `<h1>${response.question}?</h1>`;
-                html += `<p>${response.description}</p>`;
+                html += `<h5>${response.description}</h5>`;
                 html += `<a  class="button" href="https://question-answer-front.herokuapp.com/topic/${response.topic._id}">${response.topic.topic}</a>`
-                html += `<p class="float-right"> ${response.user.username}</p>`
+                html += `<p id="questionUserName" class="float-right"> ${response.user.username}</p>`
                 const questionContainer = document.getElementById("question");
                 questionContainer.innerHTML = html;
 
@@ -152,9 +152,9 @@
         .then(response => {
             let html = '';
             for (var i = 0; i < response.length; i++) {
-                html += `<hr></hr>`
-                html += `<h6>${response[i].answer}</h6>`
-                html += `<p class="float-right">${response[i].user.username}<hp>`
+                // html += `<hr></hr>`
+                html += `<p>${response[i].answer}</p>`
+                html += `<p  class="float-right">${response[i].user.username}<hp>`
                 html += `<br></br>`
             }
             const answerContainer = document.getElementById("questionAnswer");
