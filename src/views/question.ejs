@@ -85,7 +85,6 @@
         })
             .then(res => res.json())
             .then(response => {
-                console.log(response.topic._id)
                 const timestamp = response._id.toString().substring(0, 8)
                 date = new Date(parseInt(timestamp, 16) * 1000).toDateString()
                 user = response.user._id;
@@ -155,7 +154,7 @@
             for (var i = 0; i < response.length; i++) {
                 html += `<hr></hr>`
                 html += `<h6>${response[i].answer}</h6>`
-                html += `<h4 class="float-right">${response[i].user.username}<h4>`
+                html += `<p class="float-right">${response[i].user.username}<hp>`
                 html += `<br></br>`
             }
             const answerContainer = document.getElementById("questionAnswer");
