@@ -152,7 +152,6 @@
         .then(response => {
             let html = '';
             for (var i = 0; i < response.length; i++) {
-                // html += `<hr></hr>`
                 html += `<p>${response[i].answer}</p>`
                 html += `<p id="answerUserName" class="float-right">${response[i].user.username}</p>`
                 html += `<br></br>`
@@ -162,10 +161,8 @@
             let countHtml = ''
             countHtml += `<div>`
             if (response.length == 1) {
-                // countHtml += `<h4>Topic: ${topic}</h4>`
                 countHtml += `<h4>${response.length} Answer</h4>`
             } else {
-                // countHtml += `<h4>Topic: ${topic}</h4>`
                 countHtml += `<h4>${response.length} Answers</h4>`
             }
             countHtml += `</div>`
