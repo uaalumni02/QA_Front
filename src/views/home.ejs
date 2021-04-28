@@ -22,89 +22,90 @@
 </head>
 
 <body>
-        <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark>
-            <a class=" navbar-brand" href="#">Q & A</a>
-            <button style="background-color:white" class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a style="color: black" class="nav-link" onclick="logOut()" href="https://question-answer-front.herokuapp.com">Log Out</a>
-                    </li>
+    <nav style="background-color: gray" class="navbar navbar-expand-lg navbar-dark>
+        <a class="navbar-brand" href="#">Q & A</a>
+        <button style="background-color:white" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a style="color: black" class="nav-link" onclick="logOut()"
+                        href="https://question-answer-front.herokuapp.com">Log Out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
+        <h1 style="text-align: center" class="display-4">Conquering One Blocker At A Time</h1>
+        <p style="text-align: center" class="lead">Post a question or leave an answer if you have a solution. </p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="mb-4">Browse a Topic</h3>
+                <ul id="topic" class="nav flex-column nav-pills">
                 </ul>
             </div>
-        </nav>
-        <div style="background-color:  #ffffff" style="border-top: 3px solid rgb(219, 219, 219)" class="jumbotron">
-            <h1 style="text-align: center" class="display-4">Conquering One Blocker At A Time</h1>
-            <p style="text-align: center" class="lead">Post a question or leave an answer if you have a solution. </p>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <h3 class="mb-4">Browse a Topic</h3>
-                    <ul id="topic" class="nav flex-column nav-pills">
-                    </ul>
-                </div>
-                <div class="col">
-                    <h3>Recently Posted Questions</h3>
-                    <div id="question"></div>
-                </div>
+            <div class="col">
+                <h3>Recently Posted Questions</h3>
+                <div id="question"></div>
             </div>
         </div>
+    </div>
 
-        <br></br>
-        <div class="btnWrapper">
-            <center>
-                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">Ask a
-                    Question</button>
-            </center>
+    <br></br>
+    <div class="btnWrapper">
+        <center>
+            <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal">Ask a
+                Question</button>
+        </center>
+    </div>
+    <br></br>
+    <br></br>
+    <footer class="page-footer font-small blue">
+        <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
         </div>
-        <br></br>
-        <br></br>
-        <footer class="page-footer font-small blue">
-            <div class="footer-copyright text-center py-3">© 2019 Copyright: De'Meco Bell
-            </div>
-        </footer>
-        <!-- The Modal -->
-        <form id="questionForm">
-            <div class="modal fade" id="myModal">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Select Topic
-                                </button>
-                                <div id="modalTopic" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                </div>
-                            </div>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="exampleTextarea">Enter Question</label>
-                                <input onkeyup="searchQuestion()" class="form-control" id="exampleTextarea" rows="3">
-                                <div id="match-list"></div>
-                                <br></br>
-                                <label for="exampleTextarea">Enter Description</label>
-                                <textarea class="form-control" id="description" rows="3"></textarea>
+    </footer>
+    <!-- The Modal -->
+    <form id="questionForm">
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select Topic
+                            </button>
+                            <div id="modalTopic" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             </div>
                         </div>
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" onclick="submitQuestion()" class="btn btn-secondary"
-                                data-dismiss="modal">Save</button>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleTextarea">Enter Question</label>
+                            <input onkeyup="searchQuestion()" class="form-control" id="exampleTextarea" rows="3">
+                            <div id="match-list"></div>
+                            <br></br>
+                            <label for="exampleTextarea">Enter Description</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
                         </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" onclick="submitQuestion()" class="btn btn-secondary"
+                            data-dismiss="modal">Save</button>
                     </div>
                 </div>
             </div>
-    </div>
+        </div>
+        </div>
     </form>
 </body>
 <script src="/public/logOut.js"></script>

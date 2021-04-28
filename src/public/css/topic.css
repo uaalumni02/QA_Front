@@ -1,3 +1,10 @@
 .question {
     color: black;
 }
+
+
+#questionType{
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+}
