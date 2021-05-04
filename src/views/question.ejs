@@ -89,8 +89,8 @@
                 date = new Date(parseInt(timestamp, 16) * 1000).toDateString().split(' ').slice(1).join(' ')
                 user = response.user._id;
                 let html = '';
-                html += `<h1>${response.question}?</h1>`;
-                html += `<h5>${response.description}</h5>`;
+                html += `<h4>${response.question}?</h4>`;
+                html += `<p>${response.description}</p>`;
                 html += `<a  class="button" href="https://question-answer-front.herokuapp.com/topic/${response.topic._id}">${response.topic.topic}</a>`
                 html += `<p id="questionUserName" class="float-right"> ${response.user.username}</p>`
                 const questionContainer = document.getElementById("question");
