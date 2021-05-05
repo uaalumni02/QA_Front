@@ -5,10 +5,11 @@ hr {
 }
 
 #date {
-  margin-top: -31px;
   font-size: 12px;
   font-weight: bold;
   padding-right: 35px;
+  margin: auto;
+  margin-top: -31px;
 }
 
 .button {
