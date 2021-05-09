@@ -1,8 +1,8 @@
-hr {
+/* hr {
   margin: 30px -20px 20px;
   border: 0;
   border-top: 1px solid #c9c7c7;
-}
+} */
 
 #date {
   font-size: 12px;
@@ -65,4 +65,50 @@ hr {
 
 #typeAnswer {
   margin: auto;
+}
+@media only screen and (max-width: 450px) {
+  #btn {
+    margin-left: -10px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #answerCount {
+    margin-left: -10px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 768px) {
+  #btn {
+    margin-left: 78px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 768px) {
+  #answerCount {
+    margin-left: 78px;
+  }
+}
+
+.jumbotron {
+  overflow-x: hidden;
+}
+@media screen and (min-width: 1024px) and (max-width: 1024px) {
+  #btn {
+    margin-left: 112px;
+  }
+}
+@media screen and (min-width: 1024px) and (max-width: 1024px) {
+  #answerCount {
+    margin-left: 112px;
+  }
+}
+@media screen and (min-width: 540px) and (max-width: 540px) {
+  #btn {
+    margin-left: -9px;
+  }
+}
+@media screen and (min-width: 540px) and (max-width: 540px) {
+  #answerCount {
+    margin-left: -9px;
+  }
 }
