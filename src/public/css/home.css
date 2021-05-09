@@ -1,29 +1,27 @@
-
 footer {
-    display: flex;
-    justify-content: center;
-    }
-      
-      hr{
-        border-color: black;
-       }
-      
+  display: flex;
+  justify-content: center;
+}
 
-      .container-grid {
-        display: flex;
-         justify-content: center;
-        align-items: center; 
-    }
-    @media screen and (max-width: 600px) {
-      .display-4 {
-        font-size: 30px;
-      }
-    }
-  
-   .container {
-    display: flex;
-     justify-content: center;
-    align-items: center; 
+hr {
+  border-color: black;
+}
+
+.container-grid {
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 600px) {
+  .display-4 {
+    font-size: 30px;
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-link {
@@ -44,4 +42,15 @@ a {
 .recentQuestion {
   font-size: 18px;
   color: black;
+}
+
+@media only screen and (max-width: 450px) {
+  .container {
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 450px) {
+  .navbar {
+   width: 150%
+  }
 }
