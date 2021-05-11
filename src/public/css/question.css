@@ -5,11 +5,11 @@
 } */
 
 #date {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   padding-right: 30px;
   margin: auto;
-  margin-top: -35px;
+  margin-top: -30px;
 }
 
 .button {
